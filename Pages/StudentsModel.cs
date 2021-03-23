@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 using Contoso.Infra;
 using Contoso.Facade;
 using Contoso.Data;
+using Microsoft.Extensions.Logging;
 
 namespace Contoso.Pages {
-    //DONE 2.1 Vii Pages projekti
-    //TODO 6.7 Kirjuta see kood puhtaks (elementaarseteks väikesteks meetoditeks)
-    //TODO 6.8 Mõtle ka kuidas saaks lahti ViewData["Page"] ja ViewData["ItemId"]
-    //TODO 7.1 Laienda lehekülgi, sorteerimist ja otsimist kõikidele lehtedele ja universaalselt 
+   
     public class StudentsModel :BasePageModel {
         private readonly ApplicationDbContext _context;
         public StudentsModel(ApplicationDbContext c) => _context = c;
@@ -61,7 +59,7 @@ namespace Contoso.Pages {
             }
             return Page();
         }
-
+        private readonly ILogger _logger;
         public async Task<IActionResult> OnPostDeleteAsync(int? id) {
             if (id == null) {
                 return NotFound();
@@ -72,13 +70,12 @@ namespace Contoso.Pages {
             if (student == null) {
                 return NotFound();
             }
-
             try {
                 _context.Students.Remove(student);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
-            } catch (DbUpdateException /* ex */) {
-                //Log the error (uncomment ex variable name and write a log.)
+            } catch (DbUpdateException ex) {
+                _logger.LogInformation(Convert.ToString(ex));
                 return RedirectToAction("./Delete",
                                      new { id, saveChangesError = true });
             }
