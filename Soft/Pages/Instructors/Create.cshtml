@@ -1,0 +1,40 @@
+﻿@page
+@model Contoso.Pages.InstructorsModel
+@using Contoso.Pages.Extensions
+
+@{
+    ViewData["Page"] = "Instructors";
+    Layout = "_Create";
+    //TODO 4.1 - Vaja on teha kollektsioonide valimiseks Check Box juhikud
+}
+
+@Html.Editor(model => model.Instructor.LastName)
+@Html.Editor(model => model.Instructor.FirstMidName)
+@Html.Editor(model => model.Instructor.HireDate)
+@Html.Editor(model => model.Instructor.OfficeAssignment.Location)
+<div class="form-group">
+    <div class="table">
+        <table>
+            <tr>
+                @{
+                    int cnt = 0;
+
+                    foreach (var course in Model.AssignedCourseDataList)
+                    {
+                        if (cnt++ % 3 == 0)
+                        {
+                        @:</tr><tr>
+                        }
+                        @:<td>
+                            <input type="checkbox"
+                                   name="selectedCourses"
+                                   value="@course.CourseID"
+                                   @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                            @course.CourseID @:  @course.Title
+                        @:</td>
+                    }
+                @:</tr>
+                }
+            </table>
+        </div>
+    </div>

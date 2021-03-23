@@ -1,0 +1,8 @@
+﻿@using Contoso.Pages.Extensions
+@model Contoso.Pages.CoursesModel
+
+@Html.Editor(model => model.Course.CourseID)
+@Html.Editor(model => model.Course.Title)
+@Html.Editor(model => model.Course.Credits)
+@Html.Select(model => model.Course.DepartmentID,
+    Model.Departments, "-- Select Department --")

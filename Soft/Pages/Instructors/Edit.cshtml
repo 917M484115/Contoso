@@ -1,0 +1,41 @@
+﻿@page
+@model Contoso.Pages.InstructorsModel
+@using Contoso.Pages.Extensions
+
+@{
+    ViewData["Page"] = "Instructors";
+    Layout = "_Edit";
+    //TODO 3.5 - Instructors Edit ja Create vaated on sarnased, saab kasutata Partial View võimalust
+}
+
+<input type="hidden" asp-for="Instructor.ID" />
+@Html.Editor(model => model.Instructor.LastName)
+@Html.Editor(model => model.Instructor.FirstMidName)
+@Html.Editor(model => model.Instructor.HireDate)
+@Html.Editor(model => model.Instructor.OfficeAssignment.Location)
+<div class="form-group">
+    <div class="table">
+        <table>
+            <tr>
+                @{
+                    int cnt = 0;
+
+                    foreach (var course in Model.AssignedCourseDataList)
+                    {
+                        if (cnt++ % 3 == 0)
+                        {
+                        @:</tr><tr>
+                        }
+                        @:<td>
+                            <input type="checkbox"
+                                   name="selectedCourses"
+                                   value="@course.CourseID"
+                                   @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                            @course.CourseID @:  @course.Title
+                        @:</td>
+                    }
+                @:</tr>
+                }
+            </table>
+        </div>
+    </div>

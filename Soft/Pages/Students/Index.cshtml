@@ -1,0 +1,56 @@
+﻿@page
+@model Contoso.Soft.Pages.Students.IndexModel
+
+@{
+    ViewData["Page"] = "Students";
+    Layout = "_Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+                   asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Students[0].LastName)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].FirstMidName)
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort"
+                   asp-route-currentFilter="@Model.CurrentFilter">
+                    @Html.DisplayNameFor(model => model.Students[0].EnrollmentDate)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students[0].PhotoAsString)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Students) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstMidName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+            <td>
+                <img src="@item.PhotoAsString" alt="not uploaded" height=50 />
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-handler="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-handler="Details"  asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-handler="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

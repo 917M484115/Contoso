@@ -1,0 +1,7 @@
+﻿@using Contoso.Pages.Extensions
+@model Contoso.Pages.CoursesModel
+
+@Html.Show(model => model.Course.CourseID)
+@Html.Show(model => model.Course.Title)
+@Html.Show(model => model.Course.Credits)
+@Html.Show(model => model.Course.Department, model => model.Course.Department.Name)

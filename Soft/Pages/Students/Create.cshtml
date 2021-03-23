@@ -1,0 +1,13 @@
+﻿@page
+@model Contoso.Pages.StudentsModel
+@using Contoso.Pages.Extensions
+
+@{
+    ViewData["Page"] = "Students";
+    Layout = "_Create";
+}
+
+@Html.Editor(model => model.StudentVM.EnrollmentDate)
+@Html.Editor(model => model.StudentVM.LastName)
+@Html.Editor(model => model.StudentVM.FirstMidName)
+@Html.Editor(model => model.StudentVM.Photo)

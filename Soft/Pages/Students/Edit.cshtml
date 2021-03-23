@@ -1,0 +1,15 @@
+﻿@page
+@model Contoso.Pages.StudentsModel
+@using Contoso.Pages.Extensions
+
+@{
+    ViewData["Page"] = "Students";
+    Layout = "_Edit";
+    //TODO 3.6 - Students Edit ja Create vaated on sarnased, saab kasutata Partial View võimalust
+}
+<input type="hidden" asp-for="Student.ID" />
+@Html.Editor(model => model.Student.EnrollmentDate)
+@Html.Editor(model => model.Student.LastName)
+@Html.Editor(model => model.Student.FirstMidName)
+@Html.ShowImage(model => model.Student.PhotoAsString)
+@Html.Editor(model => model.Student.Photo)

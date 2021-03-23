@@ -1,0 +1,17 @@
+﻿@page
+@model Contoso.Pages.DepartmentsModel
+@using Contoso.Pages.Extensions
+
+@{
+    ViewData["Page"] = "Departments";
+    Layout = "_Edit";
+    //TODO 3.4 - Departments Edit ja Create vaated on sarnased, saab kasutata Partial View võimalust
+}
+
+<input type="hidden" asp-for="Department.DepartmentID" />
+<input type="hidden" asp-for="Department.RowVersion" />
+@Html.Editor(model => model.Department.Name)
+@Html.Editor(model => model.Department.Budget)
+@Html.Editor(model => model.Department.StartDate)
+@Html.Select(model => model.Department.InstructorID,
+    Model.InstructorNameSL, "-- Select Instructor --")

@@ -1,0 +1,15 @@
+﻿@page
+@model Contoso.Pages.CoursesModel
+
+@{
+    Layout = "_Delete";
+    ViewData["Page"] = "Courses";
+}
+
+<partial name="_ShowCourses" />
+
+@section DeleteBinding {
+    <input type="hidden" asp-for="Course.CourseID" />
+}
+
+@section ErrorMessage {}

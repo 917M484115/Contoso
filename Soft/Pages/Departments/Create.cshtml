@@ -1,0 +1,12 @@
+﻿@page
+@model Contoso.Pages.DepartmentsModel
+@using Contoso.Pages.Extensions
+
+@{
+    ViewData["Page"] = "Departments";
+    Layout = "_Create";
+}
+
+@Html.Editor(model => model.Department.Name)
+@Html.Editor(model => model.Department.Budget)
+@Html.Editor(model => model.Department.StartDate)

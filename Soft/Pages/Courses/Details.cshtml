@@ -1,0 +1,10 @@
+﻿@page
+@model Contoso.Pages.CoursesModel
+
+@{
+    ViewData["Page"] = "Courses";
+    ViewData["ItemId"] = Model.Course.CourseID;
+    Layout = "_Details";
+}
+
+<partial name="_ShowCourses" />

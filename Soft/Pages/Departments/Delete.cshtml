@@ -1,0 +1,22 @@
+﻿@page
+@model Contoso.Pages.DepartmentsModel
+@using Contoso.Pages.Extensions
+
+@{
+    Layout = "_Delete";
+    ViewData["Page"] = "Courses";
+}
+
+@Html.Show(model => model.Department.Name)
+@Html.Show(model => model.Department.Budget)
+@Html.Show(model => model.Department.StartDate)
+@Html.Show(model => model.Department.RowVersion, model => model.Department.RowVersion[7])
+@Html.Show(model => model.Department.Administrator, model => model.Department.Administrator.FullName)
+
+@section DeleteBinding {
+    <input type="hidden" asp-for="Department.DepartmentID" />
+    <input type="hidden" asp-for="Department.RowVersion" />
+}
+@section ErrorMessage {
+    <p class="text-danger">@Model.ConcurrencyErrorMessage</p>
+}

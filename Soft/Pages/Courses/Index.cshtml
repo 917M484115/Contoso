@@ -1,0 +1,48 @@
+﻿@page
+@model Contoso.Soft.Pages.Courses.IndexModel
+
+@{
+    ViewData["Page"] = "Courses";
+    Layout = "_Index";
+    //TODO 5.1 - Tee Table Transfer View meetod ja kasuta
+}
+
+<p>
+    <a asp-page="UpdateCourseCredits">Update Course Credits</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseVM[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseVM[0].Credits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseVM[0].DepartmentName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CourseVM) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Credits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-handler="Edit" asp-route-id="@item.CourseID">Edit</a> |
+                    <a asp-page="./Details" asp-route-handler="Details" asp-route-id="@item.CourseID">Details</a> |
+                    <a asp-page="./Delete" asp-route-handler="Delete" asp-route-id="@item.CourseID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

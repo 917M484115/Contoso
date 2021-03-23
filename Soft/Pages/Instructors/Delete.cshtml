@@ -1,0 +1,15 @@
+﻿@page
+@model Contoso.Pages.InstructorsModel
+@using Contoso.Pages.Extensions
+@{
+    Layout = "_Delete";
+    ViewData["Page"] = "Instructors";
+}
+@Html.Show(model => model.Instructor.HireDate)
+@Html.Show(model => model.Instructor.LastName)
+@Html.Show(model => model.Instructor.FirstMidName)
+
+@section DeleteBinding {
+    <input type="hidden" asp-for="Instructor.ID" />
+}
+@section ErrorMessage {}

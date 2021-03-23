@@ -1,0 +1,32 @@
+﻿@page
+@model Contoso.Soft.Pages.Courses.UpdateCourseCreditsModel
+@{
+    ViewBag.Title = "UpdateCourseCredits";
+}
+
+<h2>Update Course Credits</h2>
+
+@if (ViewData["RowsAffected"] == null) {
+    <form asp-action="UpdateCourseCredits">
+        <div class="form-actions no-color">
+            <p>
+                Enter a number to multiply every course's credits by: @Html.TextBox("multiplier")
+            </p>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+}
+@if (ViewData["RowsAffected"] != null) {
+    <p>
+        Number of rows updated: @ViewData["RowsAffected"]
+    </p>
+}
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

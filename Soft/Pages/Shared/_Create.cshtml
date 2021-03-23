@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Create";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>@ViewData["Page"]</h4>
+<hr />
+
+<form enctype="multipart/form-data" id="createForm" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <dl class="row">
+
+        @RenderBody()
+
+    </dl>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

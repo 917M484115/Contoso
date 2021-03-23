@@ -1,0 +1,16 @@
+﻿@page
+@model Contoso.Pages.StudentsModel
+@using Contoso.Pages.Extensions
+
+@{
+    ViewData["Page"] = "Students";
+    ViewData["ItemId"] = Model.Student.ID;
+    Layout = "_Details";
+    //TODO 3.3 - Students Detail ja Delete vaadete sisu on sisuliselt üks ja sama - saame kasutata osavaateid (Partial View)
+}
+
+@Html.Show(model => model.Student.EnrollmentDate)
+@Html.Show(model => model.Student.LastName)
+@Html.Show(model => model.Student.FirstMidName)
+@Html.ShowImage(model => model.Student.PhotoAsString)
+@Html.ShowTable(model => model.Enrollments, "CourseTitle", "Grade")

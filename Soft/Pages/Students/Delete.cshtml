@@ -1,0 +1,17 @@
+﻿@page
+@model Contoso.Pages.StudentsModel
+@using Contoso.Pages.Extensions
+@{
+    Layout = "_Delete";
+    ViewData["Page"] = "Students";
+}
+
+@Html.Show(model => model.Student.EnrollmentDate)
+@Html.Show(model => model.Student.LastName)
+@Html.Show(model => model.Student.FirstMidName)
+@Html.ShowImage(model => model.Student.PhotoAsString)
+
+@section DeleteBinding {
+    <input type="hidden" asp-for="Student.ID" />
+}
+@section ErrorMessage {}

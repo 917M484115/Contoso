@@ -1,0 +1,12 @@
+﻿@page
+@model Contoso.Pages.DepartmentsModel
+@using Contoso.Pages.Extensions
+@{
+    ViewData["Page"] = "Departments";
+    ViewData["ItemId"] = Model.Department.DepartmentID;
+    Layout = "_Details";
+    //TODO 3.1 - Departments Detail ja Delete vaadete sisu on sisuliselt üks ja sama - saame kasutata osavaateid (Partial View)
+}
+@Html.Show(model => model.Department.Name)
+@Html.Show(model => model.Department.Budget)
+@Html.Show(model => model.Department.StartDate)
